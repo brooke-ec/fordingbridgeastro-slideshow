@@ -1,0 +1,34 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
+  "build": {
+    "beforeBuildCommand": "pnpm vite build",
+    "beforeDevCommand": "pnpm vite dev",
+    "devPath": "http://localhost:5173",
+    "distDir": "../dist"
+  },
+  "package": {
+    "productName": "fordingbridgeastro-slideshow",
+    "version": "../package.json"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": false
+    },
+    "bundle": {
+      "identifier": "ec.brooke.fordingbridgeastro-slideshow",
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ]
+    },
+    "windows": [
+      {
+        "title": "Fordingbridge Astronomers Gallery",
+        "fullscreen": false
+      }
+    ]
+  }
+}
