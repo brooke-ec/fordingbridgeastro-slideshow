@@ -7,7 +7,7 @@
 		"distDir": "../dist"
 	},
 	"package": {
-		"productName": "fordingbridgeastro-slideshow",
+		"productName": "Fordingbridge Astronomers Slideshow",
 		"version": "../package.json"
 	},
 	"tauri": {
@@ -17,15 +17,26 @@
 			}
 		},
 		"bundle": {
+			"active": true,
+			"targets": "msi",
+			"category": "Utility",
 			"identifier": "ec.brooke.fordingbridgeastro-slideshow",
 			"shortDescription": "Fordingbridge Astonomers Slideshow",
 			"icon": [
-				"icons/32x32.png",
-				"icons/128x128.png",
-				"icons/128x128@2x.png",
-				"icons/icon.icns",
-				"icons/icon.ico"
-			]
+				"assets/32x32.png",
+				"assets/128x128.png",
+				"assets/128x128@2x.png",
+				"assets/icon.icns",
+				"assets/icon.ico"
+			],
+			"windows": {
+				"allowDowngrades": true,
+				"wix": {
+					"bannerPath": "assets/banner.bmp",
+					"dialogImagePath": "assets/dialogImage.bmp",
+					"template": "template.wxs"
+				}
+			}
 		}
 	}
 }
