@@ -12,7 +12,9 @@
 	},
 	"tauri": {
 		"allowlist": {
-			"all": false
+			"process": {
+				"exit": true
+			}
 		},
 		"bundle": {
 			"identifier": "ec.brooke.fordingbridgeastro-slideshow",
@@ -23,12 +25,6 @@
 				"icons/icon.icns",
 				"icons/icon.ico"
 			]
-		},
-		"windows": [
-			{
-				"title": "Fordingbridge Astronomers Gallery",
-				"fullscreen": true
-			}
-		]
+		}
 	}
 }

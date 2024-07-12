@@ -11,6 +11,9 @@ devDependencies:
   '@sveltejs/vite-plugin-svelte':
     specifier: ^3.1.1
     version: 3.1.1(svelte@4.2.18)(vite@5.3.1)
+  '@tauri-apps/api':
+    specifier: ^1.6.0
+    version: 1.6.0
   '@tauri-apps/cli':
     specifier: ^1.6.0
     version: 1.6.0
@@ -526,6 +529,11 @@ packages:
       vitefu: 0.2.5(vite@5.3.1)
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@tauri-apps/api@1.6.0:
+    resolution: {integrity: sha512-rqI++FWClU5I2UBp4HXFvl+sBWkdigBkxnpJDQUWttNyG7IZP4FwQGhTNL5EOw0vI8i6eSAJ5frLqO7n7jbJdg==}
+    engines: {node: '>= 14.6.0', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
     dev: true
 
   /@tauri-apps/cli-darwin-arm64@1.6.0:
