@@ -1,10 +1,5 @@
-<script lang="ts">
-  import "greset";
-  import "./lib/global.scss";
-  import { supabase } from "./lib/supabase";
+<script>
+	import Slideshow from "./lib/Slideshow.svelte";
 </script>
 
-<main></main>
-
-<style>
-</style>
+<Slideshow />
