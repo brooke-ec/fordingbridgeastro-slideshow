@@ -18,6 +18,7 @@
 		},
 		"bundle": {
 			"identifier": "ec.brooke.fordingbridgeastro-slideshow",
+			"shortDescription": "Fordingbridge Astonomers Slideshow",
 			"icon": [
 				"icons/32x32.png",
 				"icons/128x128.png",
