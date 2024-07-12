@@ -13,6 +13,7 @@
 	async function next() {
 		const count = await supabase.from("gallery").select("*", { count: "exact", head: true });
 		const index = Math.floor(Math.random() * count.count!);
+		animation = 0;
 
 		const result = await supabase
 			.from("gallery")
@@ -21,9 +22,13 @@
 
 		entry = result.data![0] as GalleryEntry;
 		position = position < 3 ? position + 1 : 0;
+
+		requestAnimationFrame(() => {
+			if (bind.complete) loaded();
+		});
 	}
 
-	async function load() {
+	async function loaded() {
 		let screenRatio = document.body.clientHeight / document.body.clientWidth;
 		let imageRatio = bind.clientHeight / bind.clientWidth;
 
@@ -56,7 +61,7 @@
 		on:animationend={next}
 		alt={entry?.caption}
 		bind:this={bind}
-		on:load={load}
+		on:load={loaded}
 	/>
 </div>
 
