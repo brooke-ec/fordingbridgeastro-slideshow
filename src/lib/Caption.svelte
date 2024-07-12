@@ -8,7 +8,12 @@
 </script>
 
 <div class="container" style="align-items: {position[1]}; justify-content: {position[0]};" transition:fade>
-	<div class="box" style="border-radius: {position[0] == 'start' ? '0 10px 10px 0' : '10px 0 0 10px'}">
+	<div
+		class="box"
+		style="border-radius: {position[0] == 'start'
+			? '0 10px 10px 0'
+			: '10px 0 0 10px'}; box-shadow: {position[0] == 'start' ? '-' : ''}5px 5px 10px black;"
+	>
 		<h5>{entry.caption}</h5>
 		<div class="attribution">
 			<img src="{FILES_URL}{entry.member.avatar}" alt="{entry.member.name}'s Avatar" />
@@ -26,7 +31,6 @@
 	}
 
 	.box {
-		box-shadow: 5px 5px 10px black;
 		background-color: #222222;
 		height: fit-content;
 		padding: 10px 20px;
