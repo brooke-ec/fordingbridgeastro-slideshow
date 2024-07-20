@@ -36,7 +36,6 @@
 		padding: 10px 20px;
 		margin: 40px 0;
 		z-index: 99999;
-		color: white;
 	}
 
 	.attribution {

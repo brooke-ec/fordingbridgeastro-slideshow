@@ -5,6 +5,12 @@ settings:
   excludeLinksFromLockfile: false
 
 devDependencies:
+  '@fortawesome/free-brands-svg-icons':
+    specifier: ^6.6.0
+    version: 6.6.0
+  '@fortawesome/free-solid-svg-icons':
+    specifier: ^6.6.0
+    version: 6.6.0
   '@supabase/supabase-js':
     specifier: ^2.44.3
     version: 2.44.3
@@ -32,6 +38,9 @@ devDependencies:
   svelte-check:
     specifier: ^3.8.1
     version: 3.8.1(sass@1.77.7)(svelte@4.2.18)
+  svelte-fa:
+    specifier: ^4.0.2
+    version: 4.0.2(svelte@4.2.18)
   tslib:
     specifier: ^2.6.3
     version: 2.6.3
@@ -258,6 +267,25 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@fortawesome/fontawesome-common-types@6.6.0:
+    resolution: {integrity: sha512-xyX0X9mc0kyz9plIyryrRbl7ngsA9jz77mCZJsUkLl+ZKs0KWObgaEBoSgQiYWAsSmjz/yjl0F++Got0Mdp4Rw==}
+    engines: {node: '>=6'}
+    dev: true
+
+  /@fortawesome/free-brands-svg-icons@6.6.0:
+    resolution: {integrity: sha512-1MPD8lMNW/earme4OQi1IFHtmHUwAKgghXlNwWi9GO7QkTfD+IIaYpIai4m2YJEzqfEji3jFHX1DZI5pbY/biQ==}
+    engines: {node: '>=6'}
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 6.6.0
+    dev: true
+
+  /@fortawesome/free-solid-svg-icons@6.6.0:
+    resolution: {integrity: sha512-IYv/2skhEDFc2WGUcqvFJkeK39Q+HyPf5GHUrT/l2pKbtgEIv1al1TKd6qStR5OIwQdN1GZP54ci3y4mroJWjA==}
+    engines: {node: '>=6'}
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 6.6.0
+    dev: true
 
   /@jridgewell/gen-mapping@0.3.5:
     resolution: {integrity: sha512-IzL8ZoEDIBRWEzlCcRhOaCupYyN5gdIK+Q6fbFdPDg6HqX6jpkItn7DFIpW9LQzXG6Df9sA7+OKnq0qlz/GaQg==}
@@ -1217,6 +1245,14 @@ packages:
       - sass
       - stylus
       - sugarss
+    dev: true
+
+  /svelte-fa@4.0.2(svelte@4.2.18):
+    resolution: {integrity: sha512-lza8Jfii6jcpMQB73mBStONxaLfZsUS+rKJ/hH6WxsHUd+g68+oHIL9yQTk4a0uY9HQk78T/CPvQnED0msqJfg==}
+    peerDependencies:
+      svelte: ^4.0.0
+    dependencies:
+      svelte: 4.2.18
     dev: true
 
   /svelte-hmr@0.16.0(svelte@4.2.18):

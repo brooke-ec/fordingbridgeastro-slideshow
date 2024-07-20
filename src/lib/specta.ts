@@ -14,4 +14,12 @@ export function getConfiguration() {
     return invoke()<{ mode: Mode }>("get_configuration")
 }
 
-export type Mode = "SlideShow" | "ScreenSaver"
+export function startSlideshow() {
+    return invoke()<null>("start_slideshow")
+}
+
+export function installScreensaver() {
+    return invoke()<null>("install_screensaver")
+}
+
+export type Mode = "SlideShow" | "ScreenSaver" | "Configuration"

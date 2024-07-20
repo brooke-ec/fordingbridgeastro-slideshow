@@ -71,10 +71,13 @@
 
 	.container {
 		justify-content: center;
+		background-color: black;
 		align-items: center;
+		user-select: none;
 		overflow: hidden;
 		display: flex;
 		height: 100%;
+		cursor: none;
 	}
 
 	img {

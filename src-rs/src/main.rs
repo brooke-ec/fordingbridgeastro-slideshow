@@ -3,15 +3,15 @@
 
 use serde::Serialize;
 use specta::Type;
-use std::{collections::VecDeque, env};
-use tauri::{
-    generate_handler, utils::config::WindowConfig, Manager, Result, Runtime, State, Window,
-};
+use std::{collections::VecDeque, env, process::Command};
+use tauri::utils::config::WindowConfig;
+use tauri::{generate_handler, Manager, Result, Runtime, State, Window};
 
 #[derive(Serialize, Type, PartialEq, Eq)]
 enum Mode {
     SlideShow,
     ScreenSaver,
+    Configuration,
 }
 
 #[derive(Serialize, Type)]
@@ -25,6 +25,30 @@ fn get_configuration(cfg: State<Configuration>) -> &Configuration {
     return cfg.inner();
 }
 
+#[tauri::command]
+#[specta::specta]
+fn start_slideshow() {
+    Command::new(env::current_exe().unwrap())
+        .arg("/r")
+        .spawn()
+        .unwrap();
+}
+
+#[tauri::command]
+#[specta::specta]
+fn install_screensaver() {
+    Command::new("rundll32.exe")
+        .arg("desk.cpl,InstallScreenSaver")
+        .args(
+            env::current_exe()
+                .unwrap()
+                .to_string_lossy()
+                .split_whitespace(),
+        )
+        .spawn()
+        .unwrap();
+}
+
 fn main() {
     // See https://ftp.zx.net.nz/pub/archive/ftp.microsoft.com/MISC/KB/en-us/182/383.HTM#:~:text=ScreenSaver%20%2D%20Show%20the%20Settings%20dialog,s%20%2D%20Run%20the%20Screen%20Saver.
     let mut args: VecDeque<String> = env::args().collect();
@@ -32,20 +56,22 @@ fn main() {
 
     let cfg = Configuration {
         mode: match args.front() {
-            None => Mode::SlideShow,
+            None => Mode::Configuration,
             Some(a) => match a.as_str() {
+                "/S" => Mode::Configuration,
+                "/r" => Mode::SlideShow,
                 "/s" => Mode::ScreenSaver,
-                #[cfg(not(debug_assertions))]
-                _ => todo!(),
-                #[cfg(debug_assertions)]
-                _ => Mode::SlideShow,
+                s => match s.starts_with("/c") {
+                    true => Mode::Configuration,
+                    false => panic!("Mode not implemented"),
+                },
             },
         },
     };
 
     #[cfg(debug_assertions)]
     tauri_specta::ts::export(
-        specta::collect_types![get_configuration],
+        specta::collect_types![get_configuration, start_slideshow, install_screensaver],
         "../src/lib/specta.ts",
     )
     .unwrap();
@@ -71,7 +97,7 @@ fn main() {
 
             // Workaround for https://github.com/tauri-apps/tauri/issues/10231
             #[cfg(not(debug_assertions))]
-            {
+            if cfg.mode != Mode::Configuration {
                 use tauri::{PhysicalPosition, Position};
 
                 let monitor = main.current_monitor()?.unwrap();
@@ -87,7 +113,11 @@ fn main() {
             return Ok(());
         })
         .manage(cfg)
-        .invoke_handler(generate_handler![get_configuration])
+        .invoke_handler(generate_handler![
+            get_configuration,
+            start_slideshow,
+            install_screensaver
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
@@ -102,9 +132,19 @@ where
 
     c.title = "Fordingbridge Astronomers Gallery".to_owned();
     c.always_on_top = cfg.mode == Mode::ScreenSaver;
-    c.fullscreen = cfg!(not(debug_assertions));
+    c.resizable = cfg.mode != Mode::Configuration;
     c.transparent = true;
     c.focus = true;
+
+    #[cfg(not(debug_assertions))]
+    {
+        c.fullscreen = cfg.mode != Mode::Configuration;
+    }
+
+    #[cfg(debug_assertions)]
+    {
+        c.fullscreen = false;
+    }
 
     return Ok(tauri::WindowBuilder::from_config(app, c).build()?);
 }
