@@ -26,6 +26,7 @@
 			"active": true,
 			"targets": "msi",
 			"category": "Utility",
+			"publisher": "brooke-ec",
 			"identifier": "ec.brooke.fordingbridgeastro-slideshow",
 			"shortDescription": "Fordingbridge Astonomers Slideshow",
 			"icon": [
