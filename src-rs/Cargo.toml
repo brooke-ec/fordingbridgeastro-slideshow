@@ -20,6 +20,7 @@ serde = { version = "1.0", features = ["derive"] }
 tauri = { version = "1.7.0", features = [ "window-set-fullscreen", "process-exit"] }
 tauri-specta = { version = "1.0.2", features = ["typescript"] }
 specta = "1.0.5"
+uuid = "1.10.0"
 
 [features]
 # this feature is used for production builds or when `devPath` points to the filesystem and the built-in dev server is disabled.
