@@ -60,6 +60,7 @@
 		class="animation-{animation}"
 		on:animationend={next}
 		alt={entry?.caption}
+		draggable="false"
 		bind:this={bind}
 		on:load={loaded}
 	/>

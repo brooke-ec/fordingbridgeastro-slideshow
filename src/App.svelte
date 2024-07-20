@@ -1,9 +1,14 @@
-<script>
+<script lang="ts">
+	import { getConfiguration } from "./lib/specta";
 	import Slideshow from "./lib/Slideshow.svelte";
 	import { exit } from "@tauri-apps/api/process";
+	import { onMount } from "svelte";
+
+	let configuration: Awaited<ReturnType<typeof getConfiguration>> | null = null;
+	onMount(async () => (configuration = await getConfiguration()));
 
 	async function close() {
-		if (import.meta.env.MODE != "development") await exit(1);
+		if (configuration?.mode == "ScreenSaver") await exit(1);
 	}
 </script>
 
