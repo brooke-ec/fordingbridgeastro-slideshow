@@ -1,4 +1,4 @@
-# Fordingbridge Astronomers Slideshow
+# 🌌 Fordingbridge Astronomers Slideshow
 
 An app and screensaver for automatic slideshows from the [Fordingbridge Astronomers Gallery](https://www.fordingbridgeastro.org.uk/gallery/).
 
