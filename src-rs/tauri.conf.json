@@ -14,6 +14,9 @@
 		"allowlist": {
 			"process": {
 				"exit": true
+			},
+			"window": {
+				"setFullscreen": true
 			}
 		},
 		"bundle": {
